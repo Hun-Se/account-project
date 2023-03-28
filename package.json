@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "client-build": "cd client && npm ci && npm run build && cd ../",
     "server-build": "cd server && npm ci --dev && npm run build && cd ../",
-    "heroku-prebuild": "npm run client-build && npm run server-build && mv ./client/build ./server/dist/",
+    "existing-build-remove": "cd server && cd dist && rm -rf build && cd .. && cd ..",
+    "heroku-prebuild": "npm run existing-build-remove && npm run client-build && npm run server-build && mv ./client/build ./server/dist/",
     "start": "cd server && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lowdb": "^1.0.0"
+  }
 }
