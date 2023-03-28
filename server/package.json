@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "cd dist && node app.js"
+    "start": "cd dist && nodemon --ignore db/ --watch '*.ts' --exec node --experimental-modules --es-module-specifier-resolution=node --loader ts-node/esm app.js"
   },
   "author": "",
   "license": "ISC",
