@@ -1,16 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+import jwt from "jsonwebtoken";
+export const JWT_TOKEN_SALT = "jwtTokenSalt";
+export const createToken = (value) => {
+    return jwt.sign(value, JWT_TOKEN_SALT);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyToken = exports.createToken = exports.JWT_TOKEN_SALT = void 0;
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-exports.JWT_TOKEN_SALT = "jwtTokenSalt";
-const createToken = (value) => {
-    return jsonwebtoken_1.default.sign(value, exports.JWT_TOKEN_SALT);
+export const verifyToken = (token) => {
+    return jwt.verify(token, JWT_TOKEN_SALT);
 };
-exports.createToken = createToken;
-const verifyToken = (token) => {
-    return jsonwebtoken_1.default.verify(token, exports.JWT_TOKEN_SALT);
-};
-exports.verifyToken = verifyToken;

@@ -1,29 +1,22 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.USER_VALIDATION_ERRORS = exports.loginValidator = void 0;
-const validator_1 = __importDefault(require("validator"));
-const loginValidator = (loginForm) => {
+import validator from "validator";
+export const loginValidator = (loginForm) => {
     if (Object.values(loginForm).some((v) => !v)) {
-        return { isValid: false, message: exports.USER_VALIDATION_ERRORS.EMPTY_FORM };
+        return { isValid: false, message: USER_VALIDATION_ERRORS.EMPTY_FORM };
     }
-    if (!validator_1.default.isEmail(loginForm.email)) {
-        return { isValid: false, message: exports.USER_VALIDATION_ERRORS.INVALID_EMAIL };
+    if (!validator.isEmail(loginForm.email)) {
+        return { isValid: false, message: USER_VALIDATION_ERRORS.INVALID_EMAIL };
     }
-    if (!validator_1.default.isLength(loginForm.password, { min: 8 })) {
+    if (!validator.isLength(loginForm.password, { min: 8 })) {
         return {
             isValid: false,
-            message: exports.USER_VALIDATION_ERRORS.INVALID_PASSWORD,
+            message: USER_VALIDATION_ERRORS.INVALID_PASSWORD,
         };
     }
     return {
         isValid: true,
     };
 };
-exports.loginValidator = loginValidator;
-exports.USER_VALIDATION_ERRORS = {
+export const USER_VALIDATION_ERRORS = {
     EMPTY_FORM: "이메일 / 패스워드 값이 비어있습니다",
     INVALID_EMAIL: "이메일 형식에 맞게 입력해주세요",
     INVALID_PASSWORD: "패스워드 길이는 8 이상이어야 합니다",

@@ -2,11 +2,8 @@ import { Low, JSONFile } from "lowdb";
 import fs from "fs/promises";
 import { join } from "path";
 import { nanoid } from "nanoid";
-import path from "path";
-
+import { __dirname } from "./../app";
 import type { User } from "../types/users";
-
-const __dirname = path.resolve();
 
 export interface Data {
   users: User[];
@@ -15,8 +12,8 @@ export interface Data {
 export let db: Low<Data>;
 
 export const initDatabase = async () => {
-  const dbFolderPath = join(__dirname, "./src/db");
-  const filePath = join(__dirname, "./src/db/db.json");
+  const dbFolderPath = join(__dirname, "./db");
+  const filePath = join(__dirname, "./db/db.json");
   const dbFolder = await fs.readdir(dbFolderPath).catch(() => void 0);
   const file = await fs.readdir(filePath).catch(() => void 0);
 
