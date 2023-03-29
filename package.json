@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lowdb": "^1.0.0"
+    "lowdb": "^1.0.0",
+    "nodemon": "^2.0.22"
   }
 }
