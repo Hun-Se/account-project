@@ -6,3 +6,4 @@ export const createToken = (value) => {
 export const verifyToken = (token) => {
     return jwt.verify(token, JWT_TOKEN_SALT);
 };
+//# sourceMappingURL=authorizeUtils.js.map

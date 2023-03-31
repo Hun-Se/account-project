@@ -1,58 +1,74 @@
-import { create } from "./../models/db";
-import { USER_VALIDATION_ERRORS } from "./../utils/validator";
-import type { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { createToken } from "../utils/authorizeUtils";
-import { createError } from "../utils/responseUtils";
-import { loginValidator } from "../utils/validator";
-import { createUser, findUser } from "../services/userService";
-import type { UserInput } from "../types/users";
+import { createToken } from "./../utils/authorizeUtils.js";
+import { NextFunction, Request, Response } from "express";
+import { loginValidator, USER_VALIDATION_ERRORS } from "../utils/validator.js";
 
-// 로그인 기능
-export const login = async (req: Request, res: Response) => {
-  const { email, password }: UserInput = req.body;
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import User from "../models/User.js";
 
-  const { isValid, message } = loginValidator({ email, password });
-  if (!isValid) {
-    return res.status(StatusCodes.BAD_REQUEST).send(createError(message));
-  }
-
-  const user = findUser(
-    (user) => user.email === email && user.password === password
-  );
-
-  if (user) {
-    return res.status(StatusCodes.OK).send({
-      message: "성공적으로 로그인 했습니다.",
-      token: createToken(email),
-    });
-  } else {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .send(createError(USER_VALIDATION_ERRORS.USER_NOT_FOUND));
-  }
-};
-
-// 회원 가입 기능
-export const signUp = async (req: Request, res: Response) => {
-  const { email, password }: UserInput = req.body;
+// 회원 생성
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
+  const { email, password } = req.body;
 
   const { isValid, message } = loginValidator({ email, password });
 
   if (!isValid) {
-    return res.status(StatusCodes.BAD_REQUEST).send(createError(message));
+    return res.status(StatusCodes.BAD_REQUEST).send(console.log(message));
   }
-  const existuser = findUser((user) => user.email === email);
-  if (existuser) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .send(createError(USER_VALIDATION_ERRORS.EXIST_USER));
-  } else {
-    await createUser({ email, password });
 
-    return res.status(StatusCodes.OK).send({
-      message: "계정이 성공적으로 생성되었습니다.",
-      token: createToken(email),
+  try {
+    let userEmail = await User.findOne({ email });
+    if (userEmail) {
+      return res
+        .status(400)
+        .send(console.log(USER_VALIDATION_ERRORS.EXIST_USER));
+    }
+    const user = new User({
+      _id: new mongoose.Types.ObjectId(),
+      email,
+      password,
     });
+
+    return (
+      user.save() &&
+      res.status(StatusCodes.OK).send({
+        message: "회원가입 성공",
+        token: createToken(email),
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
   }
 };
+
+// 로그인
+const loginUser = async (req: Request, res: Response, next: NextFunction) => {
+  const { email, password } = req.body;
+
+  const { isValid, message } = loginValidator({ email, password });
+
+  if (!isValid) {
+    return res.status(StatusCodes.BAD_REQUEST).send(console.log(message));
+  }
+
+  try {
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .send(console.log(USER_VALIDATION_ERRORS.USER_NOT_FOUND));
+    }
+
+    return res.status(StatusCodes.OK).send({
+      message: "로그인 성공",
+      token: createToken(email),
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+};
+
+export default { createUser, loginUser };

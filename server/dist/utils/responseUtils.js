@@ -8,3 +8,4 @@ export const createError = (details) => {
         details,
     };
 };
+//# sourceMappingURL=responseUtils.js.map

@@ -1,47 +1,61 @@
-import { USER_VALIDATION_ERRORS } from "./../utils/validator";
 import { StatusCodes } from "http-status-codes";
-import { createToken } from "../utils/authorizeUtils";
-import { createError } from "../utils/responseUtils";
-import { loginValidator } from "../utils/validator";
-import { createUser, findUser } from "../services/userService";
-// 로그인 기능
-export const login = async (req, res) => {
+import { createToken } from "./../utils/authorizeUtils.js";
+import { loginValidator, USER_VALIDATION_ERRORS } from "../utils/validator.js";
+import mongoose from "mongoose";
+import User from "../models/User.js";
+// 회원 생성
+const createUser = async (req, res, next) => {
     const { email, password } = req.body;
     const { isValid, message } = loginValidator({ email, password });
     if (!isValid) {
-        return res.status(StatusCodes.BAD_REQUEST).send(createError(message));
+        return res.status(StatusCodes.BAD_REQUEST).send(console.log(message));
     }
-    const user = findUser((user) => user.email === email && user.password === password);
-    if (user) {
-        return res.status(StatusCodes.OK).send({
-            message: "성공적으로 로그인 했습니다.",
-            token: createToken(email),
+    try {
+        let userEmail = await User.findOne({ email });
+        if (userEmail) {
+            return res
+                .status(400)
+                .send(console.log(USER_VALIDATION_ERRORS.EXIST_USER));
+        }
+        const user = new User({
+            _id: new mongoose.Types.ObjectId(),
+            email,
+            password,
         });
+        return (user.save() &&
+            res.status(StatusCodes.OK).send({
+                message: "회원가입 성공",
+                token: createToken(email),
+            }));
     }
-    else {
-        return res
-            .status(StatusCodes.BAD_REQUEST)
-            .send(createError(USER_VALIDATION_ERRORS.USER_NOT_FOUND));
+    catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error");
     }
 };
-// 회원 가입 기능
-export const signUp = async (req, res) => {
+// 로그인
+const loginUser = async (req, res, next) => {
     const { email, password } = req.body;
     const { isValid, message } = loginValidator({ email, password });
     if (!isValid) {
-        return res.status(StatusCodes.BAD_REQUEST).send(createError(message));
+        return res.status(StatusCodes.BAD_REQUEST).send(console.log(message));
     }
-    const existuser = findUser((user) => user.email === email);
-    if (existuser) {
-        return res
-            .status(StatusCodes.BAD_REQUEST)
-            .send(createError(USER_VALIDATION_ERRORS.EXIST_USER));
-    }
-    else {
-        await createUser({ email, password });
+    try {
+        let user = await User.findOne({ email });
+        if (!user) {
+            return res
+                .status(StatusCodes.BAD_REQUEST)
+                .send(console.log(USER_VALIDATION_ERRORS.USER_NOT_FOUND));
+        }
         return res.status(StatusCodes.OK).send({
-            message: "계정이 성공적으로 생성되었습니다.",
+            message: "로그인 성공",
             token: createToken(email),
         });
     }
+    catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
 };
+export default { createUser, loginUser };
+//# sourceMappingURL=authController.js.map

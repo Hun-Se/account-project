@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import { createError } from "../utils/responseUtils";
+import { createError } from "../utils/responseUtils.js";
 export const validateToken = (req, res, next) => {
     const token = req.headers.authorization;
     if (!token) {
@@ -9,3 +9,4 @@ export const validateToken = (req, res, next) => {
     }
     next();
 };
+//# sourceMappingURL=validateToken.js.map

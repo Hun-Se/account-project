@@ -1,10 +1,16 @@
 import validator from "validator";
 export const loginValidator = (loginForm) => {
     if (Object.values(loginForm).some((v) => !v)) {
-        return { isValid: false, message: USER_VALIDATION_ERRORS.EMPTY_FORM };
+        return {
+            isValid: false,
+            message: USER_VALIDATION_ERRORS.EMPTY_FORM,
+        };
     }
     if (!validator.isEmail(loginForm.email)) {
-        return { isValid: false, message: USER_VALIDATION_ERRORS.INVALID_EMAIL };
+        return {
+            isValid: false,
+            message: USER_VALIDATION_ERRORS.INVALID_EMAIL,
+        };
     }
     if (!validator.isLength(loginForm.password, { min: 8 })) {
         return {
@@ -23,3 +29,8 @@ export const USER_VALIDATION_ERRORS = {
     USER_NOT_FOUND: "로그인에 실패했습니다",
     EXIST_USER: "이미 존재하는 유저입니다",
 };
+export const TODO_VALIDATION_ERRORS = {
+    TODO_SOMETHING_WRONG: "todo를 찾는 도중 문제가 생겼습니다",
+    INVALID_VALUE: "input을 다시 확인해주세요",
+};
+//# sourceMappingURL=validator.js.map

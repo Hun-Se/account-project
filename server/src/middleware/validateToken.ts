@@ -1,9 +1,6 @@
-import jwt from "jsonwebtoken";
 import type { NextFunction, Request, Response } from "express";
-
-import { JWT_TOKEN_SALT } from "../utils/authorizeUtils";
 import { StatusCodes } from "http-status-codes";
-import { createError } from "../utils/responseUtils";
+import { createError } from "../utils/responseUtils.js";
 
 export const validateToken = (
   req: Request,
