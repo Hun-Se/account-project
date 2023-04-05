@@ -1,0 +1,26 @@
+.container-app {
+  background: url("../../asset/auth-backgroundimage.svg") no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.container-login {
+  float: right;
+  margin: 10rem 10rem 0 0;
+  animation: modal-appear 1s ease-out forwards;
+  background-color: var(--section-background-color);
+  border-radius: 10px;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
