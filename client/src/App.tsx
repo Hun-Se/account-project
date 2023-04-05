@@ -1,12 +1,14 @@
 import React from "react";
+import Router from "./router/router";
+import classes from "./App.module.css";
+import "./styles/color.css";
+import "./styles/reset.css";
+import "./styles/blind.css";
 
 function App() {
   return (
-    <div className="App">
-      Hello world
-      <header>헤더영역</header>
-      <body>바디영역</body>
-      <footer>푸터영역</footer>
+    <div className={classes["App"]}>
+      <Router />
     </div>
   );
 }
