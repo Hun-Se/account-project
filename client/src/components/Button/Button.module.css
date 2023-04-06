@@ -1,0 +1,29 @@
+.logout-button,
+.button-submit,
+.button-cancle {
+  font: inherit;
+  background-color: #0078f0;
+  border: 1px solid #0078f0;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover,
+.button-submit:hover,
+.button-cancle:hover {
+  background-color: #0800f0;
+  border-color: #0800f0;
+}
+
+.logout-button:active,
+.button-submit:active,
+.button-cancle:active {
+  background-color: #0078f0;
+}
+
+.button-submit,
+.button-cancle {
+  margin: 20px;
+}
