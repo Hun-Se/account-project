@@ -1,0 +1,88 @@
+.container-title {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin: 10px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.container-list {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 10px;
+  margin: 10px 0;
+  background: var(--section-background-color);
+  color: var(--grey-font-color);
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 31px;
+  list-style: none;
+}
+
+.container-list span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.button-dtail {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+  background: url("../../asset/icon-dtail.svg") no-repeat;
+  background-position: 3px 3px;
+  background-size: contain;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container-list .button-dtail:hover {
+  width: 27px;
+  height: 27px;
+}
+
+.container-list .button-dtail:active {
+  width: 26px;
+  height: 26px;
+}
+
+.button-edit {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+  background: url("../../asset/icon-edit.svg") no-repeat center;
+  background-size: contain;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-remove {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+  background: url("../../asset/icon-delete.svg") no-repeat center;
+  background-size: contain;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container-list .button-remove:hover,
+.container-list .button-edit:hover {
+  width: 23px;
+  height: 23px;
+}
+
+.container-list .button-remove:active,
+.container-list .button-edit:active {
+  width: 22px;
+  height: 22px;
+}
