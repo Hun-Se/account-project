@@ -2,9 +2,13 @@ import React from "react";
 import DropDown from "../DropDown/DropDown";
 import classes from "./AccountButtonList.module.css";
 import { useAppDispatch } from "../../app/hooks";
-import { modalShown } from "../../redux/modal/modalSlice";
+import { accountFormModalShown } from "../../redux/modal/modalSlice";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../constant/routes_constant";
 
 const AccountButtonList = () => {
+  const navigate = useNavigate();
+
   const itemList = [
     { id: 1, name: "최신순" },
     { id: 2, name: "오래된순" },
@@ -16,7 +20,8 @@ const AccountButtonList = () => {
 
   const modalHandler = (event: React.MouseEvent) => {
     event.preventDefault();
-    dispatch(modalShown());
+    dispatch(accountFormModalShown());
+    navigate(ROUTES.ACCOUNT_CREATE);
   };
 
   return (
