@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./AccountList.module.css";
-
-// interface TodoItemProps {
-//   title: string;
-//   id: string;
-//   content: string;
-// }
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import {
+  selectData,
+  accountGetAsync,
+} from "../../redux/account/accountGetSlice";
+import AccountListItem from "./AccountListItem";
 
 const AccountList = () => {
+  const dispatch = useAppDispatch();
+  const { account } = useAppSelector(selectData);
+
+  useEffect(() => {
+    dispatch(accountGetAsync());
+  }, [dispatch]);
+
   return (
     <>
       <div className={classes["container-app"]}>
@@ -21,32 +28,17 @@ const AccountList = () => {
           <li>메모</li>
         </ul>
         <ul>
-          <li className={classes["container-list"]}>
-            <div className={classes["container-function-button"]}>
-              <button className={classes["button-dtail"]}></button>
-              <button className={classes["button-edit"]}></button>
-              <button className={classes["button-remove"]}></button>
-            </div>
-            <span className={classes["list-title"]}>2023.04.05</span>
-            <span className={classes["list-content"]}>매출</span>
-            <span className={classes["container-todo-button"]}>100,000</span>
-            <span className={classes["container-todo-button"]}>5,000</span>
-            <span>95000</span>
-            <span>수수료 5000원으로 인한 지출</span>
-          </li>
-          <li className={classes["container-list"]}>
-            <div className={classes["container-function-button"]}>
-              <button className={classes["button-dtail"]}></button>
-              <button className={classes["button-edit"]}></button>
-              <button className={classes["button-remove"]}></button>
-            </div>
-            <span className={classes["list-title"]}>2023.04.05</span>
-            <span className={classes["list-content"]}>매출</span>
-            <span className={classes["container-todo-button"]}>100,000</span>
-            <span className={classes["container-todo-button"]}>5,000</span>
-            <span>95000</span>
-            <span>수수료 5000원으로 인한 지출</span>
-          </li>
+          {account.map((list) => (
+            <AccountListItem
+              _id={list._id}
+              key={list._id}
+              date={list.date}
+              item={list.item}
+              income={list.income}
+              expend={list.expend}
+              memo={list.memo}
+            />
+          ))}
         </ul>
       </div>
     </>
