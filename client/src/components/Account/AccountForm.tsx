@@ -1,43 +1,39 @@
 import React from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../app/hooks";
-import { modalShown } from "../../redux/modal/modalSlice";
-import Input from "../Input/Input";
+import { accountFormModalShown } from "../../redux/modal/modalSlice";
+import { AccountType } from "../../types/account";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import classes from "./AccountForm.module.css";
-
-interface FormValue {
-  date: string;
-  item: string;
-  income: string;
-  expend: string;
-  memo: string;
-}
+import ROUTES from "../../constant/routes_constant";
 
 const AccountForm = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormValue>();
+  const { register, handleSubmit } = useForm<AccountType>();
 
-  const accountSubmitHandler: SubmitHandler<FormValue> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<AccountType> = (data) => {
+    axios
+      .post("http://localhost:8080/api/accounts/create", data)
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
+    dispatch(accountFormModalShown());
+    navigate(ROUTES.ACCOUNT);
   };
 
   const modalHandler = (event: React.MouseEvent) => {
     event.preventDefault();
-    dispatch(modalShown());
+    dispatch(accountFormModalShown());
+    navigate(ROUTES.ACCOUNT);
   };
 
   return (
     <>
-      <Modal>
+      <Modal onClose={modalHandler}>
         <div className={classes["container-modal"]}>
           <header className={classes["header-account-modal"]}>
             <h3 className={classes["form-title"]}>목록생성</h3>
@@ -45,7 +41,7 @@ const AccountForm = () => {
           <form
             className={classes["container-form"]}
             action="submit"
-            onSubmit={handleSubmit(accountSubmitHandler)}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <div>
               <label id="date" className={classes["label-date"]}>
