@@ -4,6 +4,9 @@ import loginReducer from "../redux/auth/loginSlice";
 import signUpReducer from "../redux/auth/signUpSlice";
 import dropDownReducer from "../redux/dropdown/dropdownSlice";
 import modalReducer from "../redux/modal/modalSlice";
+import accountCreateReducer from "../redux/account/accountCreateSlice";
+import accountGetReducer from "../redux/account/accountGetSlice";
+import accountGetByIdReducer from "../redux/account/accountGetByIdSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +15,9 @@ export const store = configureStore({
     signup: signUpReducer,
     dropdown: dropDownReducer,
     modal: modalReducer,
+    accountcreate: accountCreateReducer,
+    accountGet: accountGetReducer,
+    accountGetById: accountGetByIdReducer,
   },
 });
 
