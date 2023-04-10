@@ -1,15 +1,17 @@
 import React from "react";
+import { useAppSelector } from "../../app/hooks";
+import { modalSelect } from "../../redux/modal/modalSlice";
 import Aside from "../Layout/Aside/Aside";
 import Header from "../Layout/Header/Header";
 import AccountButtonList from "./AccountButtonList";
 import classes from "./Account.module.css";
 import AccountList from "./AccountList";
 import AccountForm from "./AccountForm";
-import { useAppSelector } from "../../app/hooks";
-import { selectModal } from "../../redux/modal/modalSlice";
+import AccountDtail from "./AccountDtail";
 
 const Account = () => {
-  const modalsown = useAppSelector(selectModal);
+  const modalShown = useAppSelector(modalSelect);
+
   return (
     <>
       <div className={classes["container-app"]}>
@@ -18,7 +20,8 @@ const Account = () => {
           <Header></Header>
           <AccountButtonList />
           <AccountList />
-          {modalsown && <AccountForm />}
+          {modalShown.accountformShown && <AccountForm />}
+          {modalShown.accountDtailShown && <AccountDtail />}
         </main>
       </div>
     </>
