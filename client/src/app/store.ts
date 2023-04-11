@@ -7,6 +7,7 @@ import modalReducer from "../redux/modal/modalSlice";
 import accountCreateReducer from "../redux/account/accountCreateSlice";
 import accountGetReducer from "../redux/account/accountGetSlice";
 import accountGetByIdReducer from "../redux/account/accountGetByIdSlice";
+import accountDeleteReducer from "../redux/account/accountDeleteSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     accountcreate: accountCreateReducer,
     accountGet: accountGetReducer,
     accountGetById: accountGetByIdReducer,
+    accountDelete: accountDeleteReducer,
   },
 });
 
