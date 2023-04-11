@@ -8,6 +8,7 @@ import classes from "./Account.module.css";
 import AccountList from "./AccountList";
 import AccountForm from "./AccountForm";
 import AccountDtail from "./AccountDtail";
+import AccountEdit from "./AccountEdit";
 
 const Account = () => {
   const modalShown = useAppSelector(modalSelect);
@@ -22,6 +23,7 @@ const Account = () => {
           <AccountList />
           {modalShown.accountformShown && <AccountForm />}
           {modalShown.accountDtailShown && <AccountDtail />}
+          {modalShown.accountEditShown && <AccountEdit />}
         </main>
       </div>
     </>

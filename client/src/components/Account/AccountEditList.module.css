@@ -1,0 +1,57 @@
+.container-modal {
+  text-align: center;
+}
+
+.container-form label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.header-account-modal {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: var(--background-color);
+}
+
+.form-title {
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.button-close {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  background: url("../../asset/icon-close.svg");
+  width: 25px;
+  height: 25px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.input-date,
+.input-item,
+.input-income,
+.input-expend {
+  width: 50%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font: inherit;
+  padding-left: 0.5rem;
+  line-height: 32px;
+}
+
+.textarea-memo {
+  width: 50%;
+  height: 100px;
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font: inherit;
+  padding-left: 0.5rem;
+  line-height: 32px;
+}
