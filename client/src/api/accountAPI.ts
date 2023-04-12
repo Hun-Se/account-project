@@ -18,3 +18,14 @@ export const getAccountById = async (id: string) => {
   const { data } = await api.get(API_PATH.ACCOUNT_BY_ID(id));
   return data;
 };
+
+export const deleteAccount = async (id: string) => {
+  const { data } = await api.delete(API_PATH.DELETE_ACCOUNT(id));
+  return data;
+};
+
+export const updateAccount = async (id: string, prams: AccountType) => {
+  const { data } = await api.patch(API_PATH.UPDATE_ACCOUNT(id), prams);
+  console.log(prams);
+  return data;
+};
