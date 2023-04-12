@@ -10,10 +10,11 @@ const AccountButtonList = () => {
   const navigate = useNavigate();
 
   const itemList = [
-    { id: 1, name: "최신순" },
-    { id: 2, name: "오래된순" },
-    { id: 3, name: "매출순" },
-    { id: 4, name: "월별" },
+    { id: 1, name: "등록순" },
+    { id: 2, name: "최신순" },
+    { id: 3, name: "오래된순" },
+    { id: 4, name: "매출순" },
+    { id: 5, name: "월별" },
   ];
 
   const dispatch = useAppDispatch();
