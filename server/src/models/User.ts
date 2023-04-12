@@ -3,6 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface User {
   email: string;
   password: string;
+  token: string;
 }
 
 export interface UserModel extends User, Document {}
