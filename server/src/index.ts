@@ -5,6 +5,7 @@ import path from "path";
 import { config } from "./config/config.js";
 import userRoutes from "./routes/User.js";
 import authRoutes from "./routes/authRoutes.js";
+import accountRoutes from "./routes/accountRoutes.js";
 
 const router = express();
 const __dirname = path.resolve();
@@ -35,8 +36,8 @@ const StartServer = () => {
     next();
   });
 
-  router.use(express.urlencoded({ extended: true }));
   router.use(express.json());
+  router.use(express.urlencoded({ extended: true }));
 
   /** Rules of our API */
   router.use((req, res, next) => {
@@ -60,6 +61,8 @@ const StartServer = () => {
   // api 경로 설정
   // router.use("/api/users", userRoutes);
   router.use("/api/users", authRoutes);
+  router.use("/api/users", userRoutes);
+  router.use("/api/accounts", accountRoutes);
 
   // 동작 확인
   router.get("/ping", (req, res, next) =>
