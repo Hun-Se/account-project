@@ -2,9 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { createToken } from "./../utils/authorizeUtils.js";
 import { NextFunction, Request, Response } from "express";
 import { loginValidator, USER_VALIDATION_ERRORS } from "../utils/validator.js";
-
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
 // 회원 생성
@@ -28,6 +26,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
       _id: new mongoose.Types.ObjectId(),
       email,
       password,
+      token: createToken(email),
     });
 
     return (
