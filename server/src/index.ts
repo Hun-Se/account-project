@@ -59,7 +59,6 @@ const StartServer = () => {
   });
 
   // api 경로 설정
-  // router.use("/api/users", userRoutes);
   router.use("/api/users", authRoutes);
   router.use("/api/users", userRoutes);
   router.use("/api/accounts", accountRoutes);
