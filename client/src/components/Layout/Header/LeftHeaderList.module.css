@@ -1,0 +1,28 @@
+.container-header-left {
+  display: flex;
+  height: 40px;
+}
+
+.header-search::before {
+  content: "";
+  display: block;
+  background: url("../../../asset/icon-header-hambuger.svg") no-repeat;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.header-search {
+  display: flex;
+  width: 260px;
+}
+
+.header-input {
+  background-color: var(--input-background-color);
+  padding-left: 34px;
+  border: none;
+  border-radius: 6px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}

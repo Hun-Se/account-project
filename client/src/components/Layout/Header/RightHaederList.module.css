@@ -1,0 +1,48 @@
+.header-list {
+  display: flex;
+  gap: 14px;
+  height: 40px;
+}
+
+.list-dark {
+  background: url(../../../asset/icon-darkmode-switch.svg) no-repeat center;
+  background-size: contain;
+  width: 40px;
+}
+
+.list-alram {
+  background: url(../../../asset/icon-alram.svg) no-repeat center;
+  background-size: contain;
+  width: 40px;
+}
+
+.list-setting {
+  position: relative;
+  background: url(../../../asset/icon-setting.svg) no-repeat center;
+  background-size: contain;
+  width: 40px;
+  cursor: pointer;
+}
+
+.list-profile {
+  background: url(../../../asset/icon-profile.svg) no-repeat center;
+  background-size: contain;
+  width: 40px;
+}
+
+.dropdown-list {
+  position: absolute;
+  width: 58px;
+  text-align: center;
+  top: 35px;
+  left: -8px;
+  background-color: var(--background-color);
+  padding: 5px;
+  border: 1px solid var(--grey-font-color);
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  cursor: pointer;
+}
