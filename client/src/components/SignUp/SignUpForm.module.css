@@ -22,7 +22,7 @@
 
 .form-signup .email-message {
   position: absolute;
-  top: 185px;
+  top: 168px;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -30,7 +30,7 @@
 
 .form-signup .password-message {
   position: absolute;
-  top: 295px;
+  top: 272px;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
