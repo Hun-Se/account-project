@@ -1,18 +1,15 @@
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectModal, modalShown } from "../../redux/modal/modalSlice";
+import { useAppDispatch } from "../../app/hooks";
 
 import classes from "./Backdrop.module.css";
 
-const Backdrop = () => {
+interface BackdropProps {
+  onClose: (event: React.MouseEvent) => void;
+}
+
+const Backdrop = (props: BackdropProps) => {
   const dispatch = useAppDispatch();
-  const modalsown = useAppSelector(selectModal);
 
-  const modalHandler = (event: React.MouseEvent) => {
-    event.preventDefault();
-    dispatch(modalShown());
-  };
-
-  return <div className={classes.backdrop} onClick={modalHandler}></div>;
+  return <div className={classes.backdrop} onClick={props.onClose}></div>;
 };
 
 export default Backdrop;
