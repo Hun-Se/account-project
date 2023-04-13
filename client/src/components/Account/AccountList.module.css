@@ -86,3 +86,16 @@
   width: 22px;
   height: 22px;
 }
+
+.footer-pagination {
+  text-align: center;
+}
+
+.label-selectbox {
+  border: 0;
+  outline: 0;
+  color: var(--grey-button-font-color);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
