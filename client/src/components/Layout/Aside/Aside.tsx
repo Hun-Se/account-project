@@ -23,7 +23,7 @@ const Aside = () => {
           >
             가계부 입력
           </li>
-          <li className={classes["aside-list"]}>캘린 더</li>
+          <li className={classes["aside-list"]}>캘린더</li>
           <li className={classes["aside-list"]}>세금계산봇</li>
         </ul>
       </aside>
