@@ -33,7 +33,7 @@ const DropDown = (props: DropDownProps) => {
           onClick={dropDownEventHandler}
         >
           <span className={classes["dropbtn_icon"]}></span>
-          <span className={classes["dropdown-category"]}>최신순</span>
+          <span className={classes["dropdown-category"]}>등록순</span>
           <span className={classes["dropdown-title"]}>정렬</span>
         </button>
         {isshown && (
