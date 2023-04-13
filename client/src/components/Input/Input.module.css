@@ -1,0 +1,12 @@
+.container-input label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.container-input input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font: inherit;
+  padding-left: 0.5rem;
+  line-height: 32px;
+}
