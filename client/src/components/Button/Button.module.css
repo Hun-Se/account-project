@@ -1,6 +1,7 @@
 .logout-button,
 .button-submit,
-.button-cancle {
+.button-cancle,
+.button-cancle-dtailModal {
   font: inherit;
   background-color: #0078f0;
   border: 1px solid #0078f0;
@@ -12,18 +13,25 @@
 
 .logout-button:hover,
 .button-submit:hover,
-.button-cancle:hover {
+.button-cancle:hover,
+.button-cancle-dtailModal {
   background-color: #0800f0;
   border-color: #0800f0;
 }
 
 .logout-button:active,
 .button-submit:active,
-.button-cancle:active {
+.button-cancle:active,
+.button-cancle-dtailModal {
   background-color: #0078f0;
 }
 
 .button-submit,
-.button-cancle {
+.button-cancle,
+.button-cancle-dtailModal {
   margin: 20px;
+}
+
+.button-cancle-dtailModal {
+  float: right;
 }
