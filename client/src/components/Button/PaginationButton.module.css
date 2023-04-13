@@ -1,0 +1,58 @@
+.button-prev {
+  margin-right: 5px;
+  border: 0;
+  outline: 0;
+  color: var(--grey-button-font-color);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.button-number {
+  width: 20px;
+  margin: 5px;
+  border: 0;
+  outline: 0;
+  color: var(--grey-button-font-color);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.button-next {
+  margin-left: 5px;
+  border: 0;
+  outline: 0;
+  color: var(--grey-button-font-color);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.button-prev:hover,
+.button-number:hover,
+.button-next:hover {
+  color: var(--grey-font-color);
+}
+
+.button-prev:active,
+.button-number:active,
+.button-next:active {
+  color: var(--grey-button-font-color);
+}
+
+.button-number-cliked {
+  width: 20px;
+  margin: 5px;
+  border: 0;
+  outline: 0;
+  background-color: lightblue;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  cursor: pointer;
+}
