@@ -94,11 +94,12 @@ const AccountForm = () => {
                 {...register("memo")}
               ></textarea>
             </div>
-            <Button name="button-submit" text="확인"></Button>
+            <Button name="button-submit" text="확인" disabled={false}></Button>
             <Button
               name="button-cancle"
               text="취소"
               clickEvent={modalHandler}
+              disabled={false}
             ></Button>
           </form>
           <button className={classes["button-close"]} onClick={modalHandler}>

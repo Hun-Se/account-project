@@ -60,6 +60,7 @@ const AccountDtail = () => {
             name="button-cancle-dtailModal"
             text="닫기"
             clickEvent={dtailModalHandler}
+            disabled={false}
           ></Button>
           <button
             className={classes["button-close"]}
