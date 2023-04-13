@@ -5,6 +5,9 @@ import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import DashBoardPage from "../pages/DashBoardPage";
 import AccountPage from "../pages/AccountPage";
+import AccountForm from "../components/Account/AccountForm";
+import AccountDtail from "../components/Account/AccountDtail";
+import AccountEdit from "../components/Account/AccountEdit";
 
 const Router = () => {
   const AuthHomePage = withAuthValidation(HomePage);
@@ -18,8 +21,10 @@ const Router = () => {
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/signup" element={<SignUpPage />} />
         <Route path="/dashboard" element={<AuthDashboardPage />} />
-        {/* <Route path="/todos" element={<AuthTodoPage />} /> */}
         <Route path="/account" element={<AuthAccountPage />} />
+        <Route path="/account/create" element={<AccountForm />} />
+        <Route path="/account/:id" element={<AccountDtail />} />
+        <Route path="/account/edit/:id" element={<AccountEdit />} />
       </Routes>
     </BrowserRouter>
   );
