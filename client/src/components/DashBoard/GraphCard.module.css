@@ -1,0 +1,21 @@
+.container-graph {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.container-bar {
+  width: 65%;
+}
+
+.container-donuts {
+  width: 30%;
+}
+
+.title-monthtotal {
+  margin-bottom: 10px;
+}
+
+.title-expend {
+  margin-bottom: 20px;
+}
