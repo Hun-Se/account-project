@@ -49,17 +49,21 @@ const AccountList = () => {
             <li>메모</li>
           </ul>
           <ul>
-            {account.slice(offset, offset + limit).map((list) => (
-              <AccountListItem
-                _id={list._id}
-                key={list._id}
-                date={list.date}
-                item={list.item}
-                income={list.income}
-                expend={list.expend}
-                memo={list.memo}
-              />
-            ))}
+            {account
+              .slice(0)
+              .reverse()
+              .slice(offset, offset + limit)
+              .map((list) => (
+                <AccountListItem
+                  _id={list._id}
+                  key={list._id}
+                  date={list.date}
+                  item={list.item}
+                  income={list.income}
+                  expend={list.expend}
+                  memo={list.memo}
+                />
+              ))}
           </ul>
           <footer className={classes["footer-pagination"]}>
             <Pagination
