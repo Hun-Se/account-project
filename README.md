@@ -5,8 +5,6 @@
 <br>
 <br>
 
-<img src="https://media.discordapp.net/attachments/986558961241182208/1003300321260486727/KakaoTalk_Photo_2022-07-31-22-56-15.jpeg?width=1440&height=1362">
-
 <h1>📌 개요</h1>
 
 ```
