@@ -24,3 +24,15 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 800px) {
+  .container-signup {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+}
