@@ -7,8 +7,8 @@
     "client-build": "cd client && npm ci && npm run build && cd ../",
     "server-build": "cd server && npm ci --dev && npm run build && cd ../",
     "existing-build-remove": "cd server && rm -rf dist && cd ..",
-    "firebase-prebuild": "rm -rf dist && npm run existing-build-remove && npm run client-build && npm run server-build && mv ./client/build ./server/dist/ && mv ./server/dist ./",
-    "start": "cd dist && npm run start",
+    "aws-prebuild": "npm run existing-build-remove && npm run client-build && npm run server-build && mv ./client/build ./server/dist",
+    "start": "cd server && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
