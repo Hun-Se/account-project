@@ -71,7 +71,7 @@ const StartServer = () => {
   //client 연결
   router.use(express.static(__dirname + "/dist/build"));
 
-  router.get("/", function (req, res) {
+  router.get("/*", function (req, res) {
     res.sendFile(__dirname + "/dist/build/index.html");
   });
 
