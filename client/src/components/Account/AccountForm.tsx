@@ -18,7 +18,7 @@ const AccountForm = () => {
 
   const onSubmit: SubmitHandler<AccountType> = (data) => {
     axios
-      .post("http://localhost:8080/api/accounts/create", data)
+      .post(`${process.env.REACT_APP_DB_HOST}/api/accounts/create`, data)
       .then((response) => console.log(response))
       .catch((error) => console.error(error));
     dispatch(accountFormModalShown());

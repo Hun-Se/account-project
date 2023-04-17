@@ -3,7 +3,7 @@ import { TOKEN_KEY } from "../constant/token_constant";
 import Token from "../lib/token/token_class";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: process.env.REACT_APP_DB_HOST,
   headers: {
     "Content-type": "application/json",
   },

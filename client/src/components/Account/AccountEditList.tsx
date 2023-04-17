@@ -23,7 +23,10 @@ const AccountEditList = (props: AccountEditList) => {
 
   const onSubmit: SubmitHandler<AccountType> = (data) => {
     axios
-      .patch(`http://localhost:8080/api/accounts/update/${param.id}`, data)
+      .patch(
+        `${process.env.REACT_APP_DB_HOST}/api/accounts/update/${param.id}`,
+        data
+      )
       .then((response) => console.log(response))
       .catch((error) => console.error(error));
     dispatch(accountEditModalShown());
