@@ -6,8 +6,8 @@
   "scripts": {
     "client-build": "cd client && npm ci && npm run build && cd ../",
     "server-build": "cd server && npm ci --dev && npm run build && cd ../",
-    "existing-build-remove": "cd server && cd dist && rm -rf build && cd .. && cd ..",
-    "heroku-prebuild": "npm run existing-build-remove && npm run client-build && npm run server-build && mv ./client/build ./server/dist/",
+    "existing-build-remove": "cd server && rm -rf dist && cd ..",
+    "firebase-prebuild": "rm -rf dist && npm run existing-build-remove && npm run client-build && npm run server-build && mv ./client/build ./server/dist/ && mv ./server/dist ./",
     "start": "cd server && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "lowdb": "^1.0.0",
-    "nodemon": "^2.0.22",
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
     "ts-node": "^10.9.1"
   }
 }
