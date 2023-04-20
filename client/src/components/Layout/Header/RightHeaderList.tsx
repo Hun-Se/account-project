@@ -16,7 +16,7 @@ const HeaderRight = () => {
     event.preventDefault();
     setIsshown(!isshown);
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/auth/login");
   };
 
   return (
