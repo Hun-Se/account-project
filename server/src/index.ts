@@ -6,6 +6,7 @@ import { config } from "./config/config.js";
 import userRoutes from "./routes/User.js";
 import authRoutes from "./routes/authRoutes.js";
 import accountRoutes from "./routes/accountRoutes.js";
+import cors from "cors";
 
 const router = express();
 const __dirname = path.resolve();
@@ -21,6 +22,7 @@ mongoose
 
 // 서버시작 함수
 const StartServer = () => {
+  router.use(cors());
   router.use((req, res, next) => {
     // 요청로그
     console.log(
