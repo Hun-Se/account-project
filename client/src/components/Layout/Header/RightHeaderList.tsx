@@ -14,9 +14,12 @@ const HeaderRight = () => {
 
   const logoutHandler = (event: React.MouseEvent) => {
     event.preventDefault();
-    setIsshown(!isshown);
-    localStorage.removeItem("token");
-    navigate("/auth/login");
+    const result = window.confirm("정말로 로그아웃 하시겠습니까?");
+    if (result) {
+      setIsshown(!isshown);
+      localStorage.removeItem("token");
+      navigate("/auth/login");
+    }
   };
 
   return (
