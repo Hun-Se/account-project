@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 import ModalOverlay from "./ModalOverlay";
-import classes from "Modal.module.css";
 
 interface ModalProps {
   children: JSX.Element;

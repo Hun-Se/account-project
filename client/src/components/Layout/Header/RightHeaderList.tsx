@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./RightHaederList.module.css";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 
 const HeaderRight = () => {
   const [isshown, setIsshown] = useState(false);

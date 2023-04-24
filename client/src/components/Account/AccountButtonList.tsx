@@ -3,12 +3,8 @@ import DropDown from "../DropDown/DropDown";
 import classes from "./AccountButtonList.module.css";
 import { useAppDispatch } from "../../app/hooks";
 import { accountFormModalShown } from "../../redux/modal/modalSlice";
-import { useNavigate } from "react-router-dom";
-import ROUTES from "../../constant/routes_constant";
 
 const AccountButtonList = () => {
-  const navigate = useNavigate();
-
   const itemList = [
     { id: 1, name: "등록순" },
     { id: 2, name: "최신순" },

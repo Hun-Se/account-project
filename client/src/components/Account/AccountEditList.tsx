@@ -5,7 +5,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../app/hooks";
 import { accountEditModalShown } from "../../redux/modal/modalSlice";
 import { AccountType } from "../../types/account";
-import { updateAccount } from "../../api/accountAPI";
 import Button from "../Button/Button";
 import classes from "./AccountEditList.module.css";
 import ROUTES from "../../constant/routes_constant";

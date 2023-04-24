@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "./DropDown.module.css";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectData } from "../../redux/account/accountGetSlice";

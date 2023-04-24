@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import Card from "../Card/Card";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
   Tooltip,
-  ChartData,
-  ChartOptions,
   ArcElement,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";

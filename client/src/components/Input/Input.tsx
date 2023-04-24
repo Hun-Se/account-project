@@ -1,7 +1,5 @@
 import React from "react";
-import { register } from "ts-node";
 import classes from "./Input.module.css";
-import { Control, Controller } from "react-hook-form";
 
 interface InputProps {
   id: number;

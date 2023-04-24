@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Card from "../Card/Card";
 import StatisticsCardContent from "./StatisticsCardContent";
 import classes from "./StatisticsCard.module.css";
