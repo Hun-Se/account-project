@@ -1,11 +1,11 @@
 import React from "react";
-import useNavigatePageHanlder from "../../../hook/useNavigePageHanlder";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../constant/routes_constant";
 
 import classes from "./Aside.module.css";
 
 const Aside = () => {
-  const { navigateDashBoardHandler, navigateAccountHandler } =
-    useNavigatePageHanlder();
+  const navigate = useNavigate();
   return (
     <>
       <aside className={classes["aside-container"]}>
@@ -13,13 +13,13 @@ const Aside = () => {
         <ul>
           <li
             className={classes["aside-list"]}
-            onClick={navigateDashBoardHandler}
+            onClick={() => navigate(ROUTES.DASHBOARD)}
           >
             대시보드
           </li>
           <li
             className={classes["aside-list"]}
-            onClick={navigateAccountHandler}
+            onClick={() => navigate(ROUTES.ACCOUNT)}
           >
             가계부 입력
           </li>
