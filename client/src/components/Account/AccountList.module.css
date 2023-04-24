@@ -92,6 +92,7 @@
 }
 
 .label-selectbox {
+  margin: 5px;
   border: 0;
   outline: 0;
   color: var(--grey-button-font-color);
