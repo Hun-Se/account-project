@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
+import ROUTES from "../../constant/routes_constant";
 import useAuthChangeHanler from "../../hook/auth/useAuthChangeHanler";
-import useNavigatePageHanlder from "../../hook/useNavigePageHanlder";
 import { loginAsync } from "../../redux/auth/loginSlice";
 import classes from "./LoginForm.module.css";
 
@@ -22,10 +22,8 @@ const LoginForm = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await dispatch(loginAsync({ email, password }));
-    await navigate("/dashboard");
+    await navigate(ROUTES.DASHBOARD);
   };
-
-  const { navigateSignUpHandler } = useNavigatePageHanlder();
 
   return (
     <>
@@ -71,7 +69,7 @@ const LoginForm = () => {
         </button>
         <button
           className={classes["button-abled"]}
-          onClick={navigateSignUpHandler}
+          onClick={() => navigate(ROUTES.SIGNUP)}
         >
           회원가입
         </button>

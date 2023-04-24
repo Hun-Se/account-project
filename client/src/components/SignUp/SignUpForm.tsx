@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { signUpAsync } from "../../redux/auth/signUpSlice";
 import useAuthChangeHanler from "../../hook/auth/useAuthChangeHanler";
-import useNavigatePageHanlder from "../../hook/useNavigePageHanlder";
 import classes from "./SignUpForm.module.css";
+import ROUTES from "../../constant/routes_constant";
 
 const SignUpForm = () => {
   const dispatch = useAppDispatch();
@@ -24,10 +24,8 @@ const SignUpForm = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await dispatch(signUpAsync({ email, password }));
-    await navigate("/auth/login");
+    await navigate(ROUTES.LOGIN);
   };
-
-  const { navigateLoginHandler } = useNavigatePageHanlder();
 
   return (
     <>
@@ -71,7 +69,7 @@ const SignUpForm = () => {
         </button>
         <button
           className={classes["button-abled"]}
-          onClick={navigateLoginHandler}
+          onClick={() => navigate(ROUTES.LOGIN)}
         >
           로그인페이지 돌아가기
         </button>
