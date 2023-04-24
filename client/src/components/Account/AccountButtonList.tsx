@@ -13,8 +13,8 @@ const AccountButtonList = () => {
     { id: 1, name: "등록순" },
     { id: 2, name: "최신순" },
     { id: 3, name: "오래된순" },
-    { id: 4, name: "매출순" },
-    { id: 5, name: "월별" },
+    { id: 4, name: "총합높은순" },
+    { id: 5, name: "총합낮은순" },
   ];
 
   const dispatch = useAppDispatch();
@@ -22,9 +22,7 @@ const AccountButtonList = () => {
   const modalHandler = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(accountFormModalShown());
-    navigate(ROUTES.ACCOUNT_CREATE);
   };
-
   return (
     <>
       <h1 className={classes["main-title"]}>Account</h1>
