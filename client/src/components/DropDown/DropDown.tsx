@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./DropDown.module.css";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectData } from "../../redux/account/accountGetSlice";
 import {
   showlist,
-  selectDropDownShown,
+  selectDropDown,
+  sortData,
 } from "../../redux/dropdown/dropdownSlice";
 
 interface DropDownProps {
@@ -11,19 +13,31 @@ interface DropDownProps {
 }
 
 const DropDown = (props: DropDownProps) => {
-  const dropdownList = props.itemList.map((list) => (
-    <div className={classes["list-dropdown"]} key={list.id}>
-      {list.name}
-    </div>
-  ));
-
-  const isshown = useAppSelector(selectDropDownShown);
+  const [sortName, setSortName] = useState("등록순");
   const dispatch = useAppDispatch();
+  const dropdown = useAppSelector(selectDropDown);
+  const { account } = useAppSelector(selectData);
 
   const dropDownEventHandler = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(showlist());
   };
+
+  const selectItemHandler = (item: string) => {
+    dispatch(showlist());
+    setSortName(item);
+    dispatch(sortData({ account, item }));
+  };
+
+  const dropdownList = props.itemList.map((list) => (
+    <li
+      className={classes["list-dropdown"]}
+      key={list.id}
+      onClick={() => selectItemHandler(list.name)}
+    >
+      {list.name}
+    </li>
+  ));
 
   return (
     <>
@@ -33,10 +47,10 @@ const DropDown = (props: DropDownProps) => {
           onClick={dropDownEventHandler}
         >
           <span className={classes["dropbtn_icon"]}></span>
-          <span className={classes["dropdown-category"]}>등록순</span>
+          <span className={classes["dropdown-category"]}>{sortName}</span>
           <span className={classes["dropdown-title"]}>정렬</span>
         </button>
-        {isshown && (
+        {dropdown.isShown && (
           <ul className={classes["dropdown-list"]}>{dropdownList}</ul>
         )}
       </div>
