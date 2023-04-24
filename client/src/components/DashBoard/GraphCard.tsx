@@ -57,7 +57,7 @@ const GraphCard = () => {
     })
     .filter((v) => v);
 
-  function sumByKey(itemList: any, items: string[]) {
+  const sumByKey = (itemList: any, items: string[]) => {
     const sums: any = {};
     for (let i = 0; i < itemList.length; i++) {
       const key = itemList[i][0];
@@ -70,7 +70,7 @@ const GraphCard = () => {
       }
     }
     return sums;
-  }
+  };
 
   const sum = sumByKey(
     itemList,
