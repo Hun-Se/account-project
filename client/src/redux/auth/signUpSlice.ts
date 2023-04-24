@@ -38,12 +38,14 @@ export const signUpSlice = createSlice({
         state.status = "loading";
       })
       .addCase(signUpAsync.fulfilled, (state, action) => {
+        window.alert("회원가입에 성공하였습니다.");
         state.status = "idle";
         state.email = action.payload;
         state.password = action.payload;
         state.token = action.payload;
       })
       .addCase(signUpAsync.rejected, (state, action) => {
+        window.alert("회원가입에 실패하였습니다. 이미 등록된 이메일 입니다.");
         state.status = "failed";
       });
   },
