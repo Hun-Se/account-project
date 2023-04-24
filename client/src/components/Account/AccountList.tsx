@@ -1,30 +1,58 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./AccountList.module.css";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   selectData,
   accountGetAsync,
 } from "../../redux/account/accountGetSlice";
+import { sortData, selectDropDown } from "../../redux/dropdown/dropdownSlice";
 import AccountListItem from "./AccountListItem";
 import Pagination from "./Pagination";
 
 const AccountList = () => {
-  const [, updateState] = useState({});
-  const forceupdate = useCallback(() => updateState({}), []);
   const dispatch = useAppDispatch();
-  const { account } = useAppSelector(selectData);
+  const { account, status } = useAppSelector(selectData);
+  const dropdown = useAppSelector(selectDropDown);
+  const [item, setItem] = useState("");
   const [limit, setLimit] = useState(8);
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
+  const [month, setMonth] = useState(0);
 
   useEffect(() => {
     dispatch(accountGetAsync());
-    forceupdate();
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(sortData({ account, item }));
+  }, [dispatch, account]);
+
+  const monthAccountListItem =
+    month === 0
+      ? dropdown.isSortedAccount
+      : dropdown.isSortedAccount.filter(
+          (v) => new Date(v.date).getMonth() + 1 === month
+        );
+
+  const showAccountListItem = monthAccountListItem
+    .slice(offset, offset + limit)
+    .map((list) => (
+      <AccountListItem
+        _id={list._id}
+        key={list._id}
+        date={list.date}
+        item={list.item}
+        income={list.income}
+        expend={list.expend}
+        memo={list.memo}
+      />
+    ));
 
   return (
     <>
-      {account ? (
+      {status === "loading" ? (
+        <div>Loding...</div>
+      ) : (
         <div className={classes["container-app"]}>
           <label className={classes["label-selectbox"]}>
             페이지 당 표시할 게시물 수:&nbsp;
@@ -39,6 +67,26 @@ const AccountList = () => {
               <option value="256">256</option>
             </select>
           </label>
+          <label className={classes["label-selectbox"]}>
+            월별:&nbsp;
+            <select
+              value={month}
+              onChange={({ target: { value } }) => setMonth(Number(value))}
+            >
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">5</option>
+              <option value="4">6</option>
+              <option value="4">7</option>
+              <option value="4">8</option>
+              <option value="4">9</option>
+              <option value="4">10</option>
+              <option value="4">11</option>
+              <option value="4">12</option>
+            </select>
+          </label>
           <ul className={classes["container-title"]}>
             <li>기능</li>
             <li>날짜</li>
@@ -48,23 +96,7 @@ const AccountList = () => {
             <li>총합</li>
             <li>메모</li>
           </ul>
-          <ul>
-            {account
-              .slice(0)
-              .reverse()
-              .slice(offset, offset + limit)
-              .map((list) => (
-                <AccountListItem
-                  _id={list._id}
-                  key={list._id}
-                  date={list.date}
-                  item={list.item}
-                  income={list.income}
-                  expend={list.expend}
-                  memo={list.memo}
-                />
-              ))}
-          </ul>
+          <ul>{showAccountListItem}</ul>
           <footer className={classes["footer-pagination"]}>
             <Pagination
               total={account.length}
@@ -74,8 +106,6 @@ const AccountList = () => {
             />
           </footer>
         </div>
-      ) : (
-        <></>
       )}
     </>
   );
