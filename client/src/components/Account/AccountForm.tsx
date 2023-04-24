@@ -1,34 +1,32 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../app/hooks";
+import { accountGetAsync } from "../../redux/account/accountGetSlice";
 import { accountFormModalShown } from "../../redux/modal/modalSlice";
 import { AccountType } from "../../types/account";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import classes from "./AccountForm.module.css";
-import ROUTES from "../../constant/routes_constant";
 
 const AccountForm = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
   const { register, handleSubmit } = useForm<AccountType>();
 
   const onSubmit: SubmitHandler<AccountType> = (data) => {
     axios
       .post(`${process.env.REACT_APP_DB_HOST}/api/accounts/create`, data)
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+      })
       .catch((error) => console.error(error));
     dispatch(accountFormModalShown());
-    navigate(ROUTES.ACCOUNT);
+    dispatch(accountGetAsync()); // 투두 리스트 업데이트
   };
 
   const modalHandler = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(accountFormModalShown());
-    navigate(ROUTES.ACCOUNT);
   };
 
   return (
