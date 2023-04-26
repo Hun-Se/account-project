@@ -9,11 +9,11 @@ import Button from "../Button/Button";
 import classes from "./AccountEditList.module.css";
 import ROUTES from "../../constant/routes_constant";
 
-interface AccountEditList {
+interface AccountEditListProps {
   existdata: AccountType;
 }
 
-const AccountEditList = (props: AccountEditList) => {
+const AccountEditList = (props: AccountEditListProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const param = useParams();
