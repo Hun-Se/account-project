@@ -31,7 +31,7 @@ const SignUpForm = () => {
     <>
       <form className={classes["form-signup"]} onSubmit={handleSubmit}>
         <h1>회원가입</h1>
-        <label htmlFor="signupemail">이메일</label>
+        <label htmlFor="email">이메일</label>
         {email.length > 0 && (
           <span
             className={`${classes["email-message"]} ${
@@ -41,8 +41,13 @@ const SignUpForm = () => {
             {emailMessage}
           </span>
         )}
-        <input id="signupemail" type="email" onChange={emailChangeHandler} />
-        <label htmlFor="signupPassword">패스워드</label>
+        <input
+          id="email"
+          autoComplete="off"
+          type="email"
+          onChange={emailChangeHandler}
+        />
+        <label htmlFor="password">패스워드</label>
         {password.length > 0 && (
           <span
             className={`${classes["password-message"]} ${
@@ -53,7 +58,8 @@ const SignUpForm = () => {
           </span>
         )}
         <input
-          id="signupPassword"
+          id="password"
+          autoComplete="off"
           type="password"
           onChange={passwordChangeHandler}
         />

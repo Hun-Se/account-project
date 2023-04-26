@@ -29,7 +29,7 @@ const LoginForm = () => {
     <>
       <form className={classes["form-login"]} onSubmit={handleSubmit}>
         <h1>로그인</h1>
-        <label htmlFor="loginemail">이메일</label>
+        <label htmlFor="email">이메일</label>
         {email.length > 0 && (
           <span
             className={`${classes["email-message"]} ${
@@ -39,9 +39,14 @@ const LoginForm = () => {
             {emailMessage}
           </span>
         )}
-        <input id="loginemail" type="email" onChange={emailChangeHandler} />
+        <input
+          id="email"
+          autoComplete="off"
+          type="email"
+          onChange={emailChangeHandler}
+        />
 
-        <label htmlFor="loginpassword">패스워드</label>
+        <label htmlFor="password">패스워드</label>
         {password.length > 0 && (
           <span
             className={`${classes["password-message"]} ${
@@ -52,8 +57,9 @@ const LoginForm = () => {
           </span>
         )}
         <input
-          id="loginpassword"
+          id="password"
           type="password"
+          autoComplete="off"
           onChange={passwordChangeHandler}
         />
 
