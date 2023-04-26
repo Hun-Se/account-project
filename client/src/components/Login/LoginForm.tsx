@@ -25,6 +25,11 @@ const LoginForm = () => {
     await navigate(ROUTES.DASHBOARD);
   };
 
+  const buttonHandler = (event: React.MouseEvent) => {
+    event.preventDefault();
+    navigate(ROUTES.SIGNUP);
+  };
+
   return (
     <>
       <form className={classes["form-login"]} onSubmit={handleSubmit}>
@@ -73,10 +78,7 @@ const LoginForm = () => {
         >
           로그인
         </button>
-        <button
-          className={classes["button-abled"]}
-          onClick={() => navigate(ROUTES.SIGNUP)}
-        >
+        <button className={classes["button-abled"]} onClick={buttonHandler}>
           회원가입
         </button>
       </form>

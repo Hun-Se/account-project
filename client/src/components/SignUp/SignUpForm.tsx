@@ -27,6 +27,11 @@ const SignUpForm = () => {
     await navigate(ROUTES.LOGIN);
   };
 
+  const buttonHandler = (event: React.MouseEvent) => {
+    event.preventDefault();
+    navigate(ROUTES.LOGIN);
+  };
+
   return (
     <>
       <form className={classes["form-signup"]} onSubmit={handleSubmit}>
@@ -73,10 +78,7 @@ const SignUpForm = () => {
         >
           회원가입
         </button>
-        <button
-          className={classes["button-abled"]}
-          onClick={() => navigate(ROUTES.LOGIN)}
-        >
+        <button className={classes["button-abled"]} onClick={buttonHandler}>
           로그인페이지 돌아가기
         </button>
       </form>
