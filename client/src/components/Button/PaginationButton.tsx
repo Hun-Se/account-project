@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import classes from "./PaginationButton.module.css";
 
 interface Props {

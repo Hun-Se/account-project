@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAccountById } from "../../api/accountAPI";
-import { AccountType } from "../../types/account";
 import { RootState } from "../../app/store";
 
 export interface accountgetState {
@@ -31,7 +30,6 @@ export const accountGetByIdAsync = createAsyncThunk(
   "accountById/accountGetById",
   async (id: string) => {
     const response = await getAccountById(id);
-    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -39,7 +37,6 @@ export const accountGetByIdAsync = createAsyncThunk(
 export const accountGetByIdSlice = createSlice({
   name: "accountById",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {},
   extraReducers: (builder) => {
     builder

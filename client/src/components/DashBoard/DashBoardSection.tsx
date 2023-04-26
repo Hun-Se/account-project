@@ -1,16 +1,9 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import StatisticsCard from "./StatisticsCard";
 import GraphCard from "./GraphCard";
 import classes from "./DashBoardSection.module.css";
 
 const DashBoardSection = () => {
-  const [, updateState] = useState({});
-  const forceupdate = useCallback(() => updateState({}), []);
-
-  useEffect(() => {
-    forceupdate();
-  }, []);
-
   return (
     <>
       <h1 className={classes["body-title"]}>Dashboards</h1>

@@ -1,5 +1,3 @@
-import { useAppDispatch } from "../../app/hooks";
-
 import classes from "./Backdrop.module.css";
 
 interface BackdropProps {
@@ -7,8 +5,6 @@ interface BackdropProps {
 }
 
 const Backdrop = (props: BackdropProps) => {
-  const dispatch = useAppDispatch();
-
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
 };
 

@@ -1,8 +1,6 @@
 import { postSignUp } from "../../api/authAPI";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AuthType } from "../../types/auth";
-import Token from "../../lib/token/token_class";
-import { TOKEN_KEY } from "../../constant/token_constant";
 export interface authState {
   id: string;
   email: string;
@@ -44,7 +42,7 @@ export const signUpSlice = createSlice({
         state.password = action.payload;
         state.token = action.payload;
       })
-      .addCase(signUpAsync.rejected, (state, action) => {
+      .addCase(signUpAsync.rejected, (state) => {
         window.alert("회원가입에 실패하였습니다. 이미 등록된 이메일 입니다.");
         state.status = "failed";
       });

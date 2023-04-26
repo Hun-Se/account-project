@@ -13,7 +13,7 @@ const AccountList = () => {
   const dispatch = useAppDispatch();
   const { account, status } = useAppSelector(selectData);
   const dropdown = useAppSelector(selectDropDown);
-  const [item, setItem] = useState("");
+  const [item] = useState("");
   const [limit, setLimit] = useState(8);
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
@@ -25,7 +25,7 @@ const AccountList = () => {
 
   useEffect(() => {
     dispatch(sortData({ account, item }));
-  }, [dispatch, account]);
+  }, [dispatch, account, item]);
 
   const monthAccountListItem =
     month === 0

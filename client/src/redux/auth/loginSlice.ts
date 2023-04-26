@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useNavigate } from "react-router-dom";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { postLogin } from "../../api/authAPI";
 import { AuthType } from "../../types/auth";
 import Token from "../../lib/token/token_class";
@@ -27,7 +26,6 @@ export const loginAsync = createAsyncThunk(
   "login/postLogin",
   async (params: AuthType) => {
     const response = await postLogin(params);
-    // The value we return becomes the `fulfilled` action payload
     return response;
   }
 );
@@ -35,9 +33,8 @@ export const loginAsync = createAsyncThunk(
 export const loginSlice = createSlice({
   name: "login",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    logout: (state, action) => {
+    logout: (state) => {
       state.isLogin = false;
     },
   },
@@ -54,7 +51,7 @@ export const loginSlice = createSlice({
         state.token = action.payload.token;
         Token.setToken(TOKEN_KEY, state.token);
       })
-      .addCase(loginAsync.rejected, (state, action) => {
+      .addCase(loginAsync.rejected, (state) => {
         state.status = "failed";
       });
   },
