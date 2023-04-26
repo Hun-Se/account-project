@@ -21,7 +21,7 @@ const AccountEdit = () => {
     if (typeof param.id === "string") {
       dispatch(accountGetByIdAsync(param.id));
     }
-  }, []);
+  }, [dispatch, param.id]);
 
   const modalHandler = (event: React.MouseEvent) => {
     event.preventDefault();

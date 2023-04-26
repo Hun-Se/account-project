@@ -19,7 +19,7 @@ const AccountDtail = () => {
     if (typeof param.id === "string") {
       dispatch(accountGetByIdAsync(param.id));
     }
-  }, []);
+  }, [dispatch, param.id]);
 
   const dtailModalHandler = (event: React.MouseEvent) => {
     event.preventDefault();
