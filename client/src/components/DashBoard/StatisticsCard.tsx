@@ -36,10 +36,11 @@ const StatisticsCard = () => {
       const monthIncome = Number(v.income);
       return monthIncome;
     }
+    return 0;
   });
   // 현재달 수입 합계
   let toMonthIncome = 0;
-  const sumIncome = monthIncomeArray
+  monthIncomeArray
     .filter((v) => v !== undefined)
     .forEach(function (el) {
       if (el !== undefined) toMonthIncome += el;
@@ -52,9 +53,11 @@ const StatisticsCard = () => {
       const monthIncome = Number(v.income);
       return monthIncome;
     }
+    return 0;
   });
+
   let lastMonthIncome = 0;
-  const sumLastIncome = lastmonthIncomeArray
+  lastmonthIncomeArray
     .filter((v) => v !== undefined)
     .forEach(function (el) {
       if (el !== undefined) lastMonthIncome += el;
@@ -71,10 +74,11 @@ const StatisticsCard = () => {
       const monthExpend = Number(v.expend);
       return monthExpend;
     }
+    return 0;
   });
 
   let toMonthExpend = 0;
-  const sumExpend = monthexpendArray
+  monthexpendArray
     .filter((v) => v !== undefined)
     .forEach(function (el) {
       if (el !== undefined) toMonthExpend += el;
@@ -87,9 +91,10 @@ const StatisticsCard = () => {
       const monthExpend = Number(v.expend);
       return monthExpend;
     }
+    return 0;
   });
   let lastMonthExpend = 0;
-  const sumLastExpend = lastmonthExpendArray
+  lastmonthExpendArray
     .filter((v) => v !== undefined)
     .forEach(function (el) {
       if (el !== undefined) lastMonthExpend += el;

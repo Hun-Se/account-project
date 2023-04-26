@@ -51,6 +51,7 @@ const GraphCard = () => {
         const arr = [v.item, Number(v.expend)];
         return arr;
       }
+      return 0;
     })
     .filter((v) => v);
 
