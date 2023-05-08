@@ -26,7 +26,7 @@
 
 ### [기술]
 
-📌 FrontEnd: React, TypeScript, Redux-Toolkit,
+📌 FrontEnd: HTML5, CSS3, React, TypeScript, Redux, Chart.js
 <br/>
 📌 BackEnd: Node.js, MongoDB
 <br/>
@@ -87,11 +87,21 @@
 - 🎯 공통
   - 로그아웃
 
-# ⚙️ API 실헹
+# ⚙️ 실행 방법
+
+- client
 
 ```
+  // 루트 폴더 기준
+  > cd client
+  > npm start
+```
+
+- server
+
+```
+  // 루트 폴더 기중
   > cd server
-  > npm run build
   > npm start
 ```
 
@@ -99,8 +109,10 @@
 
 ### Redux-toolkit
 
-- 미들웨어 Thunk를 사용하여 비동기 통신
-- 전역적으로 사용하는 Modal기능 및 상태값들을 Reducer로 상태관리
+- Redux-toolkit을 사용하여 action을 생성하고 store를 생성하는 코드를 줄였습니다.
+- 미들웨어 Thunk를 생성하여 비동기 통신 하였습니다.
+- 전역적으로 사용하는 Modal기능 및 상태값들을 Reducer로 상태관리 하였습니다.
+- 기능을 동작하는 여러 action들을 생성하여 뷰와 로직을 분리하였습니다.
 
 ### Custom Hook
 
@@ -116,14 +128,14 @@
 
 ### react-hook-form
 
+- 다른 라이브러리에 비해 속도가 빠르다는 평가가 있었고 데이터 입력을 받는 로직을 간단하게 줄일 수 있어서 도입했다.
 - form 데이터를 편하게 객체 형태로 받을 수 있었다.
-- 하지만 리덕스 툴킷을 적용 했을 때는 form 데이터가 제대로 전달이 안되는 현상이 발생헀다.경ㄹ
+- 하지만 리덕스 툴킷을 적용 했을 때는 form 데이터가 제대로 전달이 안되는 현상이 발생헀다.
 
 ### Node.js
 
-- api를 직접 제작해 봄으로써 어떻게해야 편하게 req,res를 할 수 있을 지 고민했다.
 - 경로의 이름과 규칙을 통일 함으로써 Restful하게 api를 짜려고 노력했다.
-- commonJS 방식과 moduleJS 방식 중 프론트단에서 처럼 import를 사용하기 위하여 moduleJS 방식을 선택하였다.
+- commonJS 방식과 moduleJS 방식 중 프론트단에서 처럼 import를 사용하여 모듈을 불러오는 방식이 익숙했기 때문에 moduleJS 방식을 선택하였다.
 
 ### MongoDB
 
