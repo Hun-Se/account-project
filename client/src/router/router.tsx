@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import DashBoardPage from "../pages/DashBoardPage";
+import CalendarPage from "../pages/CalendarPage";
 import AccountPage from "../pages/AccountPage";
 import AccountForm from "../components/Account/AccountForm";
 import AccountDtail from "../components/Account/AccountDtail";
@@ -13,6 +14,7 @@ const Router = () => {
   const AuthHomePage = withAuthValidation(HomePage);
   const AuthDashboardPage = withAuthValidation(DashBoardPage);
   const AuthAccountPage = withAuthValidation(AccountPage);
+  const AuthCalendarPage = withAuthValidation(CalendarPage);
 
   return (
     <BrowserRouter>
@@ -25,6 +27,7 @@ const Router = () => {
         <Route path="/account/create" element={<AccountForm />} />
         <Route path="/account/:id" element={<AccountDtail />} />
         <Route path="/account/edit/:id" element={<AccountEdit />} />
+        <Route path="/calendar" element={<AuthCalendarPage />} />
       </Routes>
     </BrowserRouter>
   );
