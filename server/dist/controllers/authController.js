@@ -21,6 +21,7 @@ const createUser = async (req, res, next) => {
             _id: new mongoose.Types.ObjectId(),
             email,
             password,
+            token: createToken(email),
         });
         return (user.save() &&
             res.status(StatusCodes.OK).send({

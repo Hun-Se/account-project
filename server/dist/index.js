@@ -3,7 +3,10 @@ import http from "http";
 import mongoose from "mongoose";
 import path from "path";
 import { config } from "./config/config.js";
+import userRoutes from "./routes/User.js";
 import authRoutes from "./routes/authRoutes.js";
+import accountRoutes from "./routes/accountRoutes.js";
+import cors from "cors";
 const router = express();
 const __dirname = path.resolve();
 // MongoDB 연결
@@ -16,6 +19,7 @@ mongoose
     .catch((error) => console.error(error));
 // 서버시작 함수
 const StartServer = () => {
+    router.use(cors());
     router.use((req, res, next) => {
         // 요청로그
         console.log(`Incomming - METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
@@ -25,8 +29,8 @@ const StartServer = () => {
         });
         next();
     });
-    router.use(express.urlencoded({ extended: true }));
     router.use(express.json());
+    router.use(express.urlencoded({ extended: true }));
     /** Rules of our API */
     router.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
@@ -38,13 +42,14 @@ const StartServer = () => {
         next();
     });
     // api 경로 설정
-    // router.use("/api/users", userRoutes);
     router.use("/api/users", authRoutes);
+    router.use("/api/users", userRoutes);
+    router.use("/api/accounts", accountRoutes);
     // 동작 확인
     router.get("/ping", (req, res, next) => res.status(200).json({ hello: "world" }));
     //client 연결
     router.use(express.static(__dirname + "/dist/build"));
-    router.get("/", function (req, res) {
+    router.get("/*", function (req, res) {
         res.sendFile(__dirname + "/dist/build/index.html");
     });
     // 서버 실행
