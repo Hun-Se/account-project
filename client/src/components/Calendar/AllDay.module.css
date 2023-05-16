@@ -1,0 +1,27 @@
+.container-days {
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-days:hover {
+  background-color: var(--hover-color);
+}
+
+.container-days p {
+  padding: 5px;
+  font-weight: 300;
+}
+
+.par-sameMonth {
+  font-weight: 700;
+}
+
+.par-cliked {
+  border: 1px solid skyblue;
+}
+
+.par-holiday {
+  color: red;
+}
