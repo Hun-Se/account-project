@@ -1,0 +1,10 @@
+.main-title {
+  margin: 20px 0;
+}
+
+.container-section {
+  width: 700px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
