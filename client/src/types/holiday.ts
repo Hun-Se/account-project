@@ -1,6 +1,6 @@
 export type Holiday = {
-  dataKind: string;
-  dataName: string;
+  dateKind: string;
+  dateName: string;
   isHoliday: string;
   locdate: number;
   seq: number;
