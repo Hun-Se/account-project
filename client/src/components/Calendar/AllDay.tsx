@@ -1,5 +1,7 @@
 import React from "react";
+import CalendarSpan from "./CalendarSpan";
 import classes from "./AllDay.module.css";
+import { AccountType } from "../../types/account";
 
 interface Props {
   day: Date;
@@ -8,6 +10,8 @@ interface Props {
   clickedDate: Date | undefined;
   setClickedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
   isHoliday: boolean;
+  holidayName: (string | 0)[];
+  account: (undefined | AccountType)[];
 }
 
 const allDay = ({
@@ -17,6 +21,8 @@ const allDay = ({
   clickedDate,
   setClickedDate,
   isHoliday,
+  holidayName,
+  account,
 }: Props) => {
   const nowTime = new Date();
 
@@ -37,15 +43,37 @@ const allDay = ({
   };
 
   return (
-    <div className={classes["container-days"]} onClick={() => clickDate()}>
-      <p
-        className={`${sameMonth ? classes["par-sameMonth"] : classes} ${
-          clickedDate ? classes["par-cliked"] : classes
-        } ${isHoliday ? classes["par-holiday"] : classes} `}
-      >
-        {day.getDate()}
-      </p>
-    </div>
+    <>
+      <div className={classes["container-days"]} onClick={() => clickDate()}>
+        <p
+          className={`
+          ${classes["par-days"]}
+          ${sameMonth ? classes["par-sameMonth"] : classes} 
+          ${clickDay ? classes["par-cliked"] : classes} 
+          ${isHoliday ? classes["par-holiday"] : classes} 
+          ${sameDay ? classes["par-sameDay"] : classes}
+          `}
+        >
+          {String(day.getMonth() + 1) + "/" + day.getDate()}&nbsp;
+          {holidayName}
+        </p>
+        <div className={classes["container-account-data"]}>
+          {account.map((v) => {
+            if (v) {
+              return (
+                <CalendarSpan
+                  key={v._id}
+                  title={v.item}
+                  income={v.income}
+                  expend={v.expend}
+                ></CalendarSpan>
+              );
+            }
+            return undefined;
+          })}
+        </div>
+      </div>
+    </>
   );
 };
 

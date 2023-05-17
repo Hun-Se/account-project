@@ -1,8 +1,23 @@
 .container-days {
-  border: 1px solid gray;
+  border: 0.5px solid var(--grey-font-color);
+  flex-wrap: 1px;
+}
+
+.container-days:nth-child(7n + 1) {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.container-days:nth-child(7n) {
+  color: #4d96ff;
+  font-weight: bold;
+}
+
+.container-days .container-account-data {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  margin: 10px 0 0 10px;
+  color: var(--grey-font-color);
 }
 
 .container-days:hover {
@@ -10,18 +25,23 @@
 }
 
 .container-days p {
-  padding: 5px;
-  font-weight: 300;
+  padding: 10px;
+  font-weight: 600;
 }
 
 .par-sameMonth {
   font-weight: 700;
 }
 
+.par-sameDay {
+  color: white;
+  background-color: #4d96ff;
+}
+
 .par-cliked {
-  border: 1px solid skyblue;
+  border: 1px solid #4d96ff;
 }
 
 .par-holiday {
-  color: red;
+  color: #ff6b6b;
 }
