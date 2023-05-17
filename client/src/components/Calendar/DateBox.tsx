@@ -2,6 +2,7 @@ import React from "react";
 import WeekBox from "./WeekBox";
 import AllDay from "./AllDay";
 import { Holiday } from "../../types/holiday";
+import { AccountType } from "../../types/account";
 import classes from "./DateBox.module.css";
 
 interface DateBoxProps {
@@ -10,6 +11,7 @@ interface DateBoxProps {
   clickedDate: Date | undefined;
   setClickedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
   holiday: Holiday[];
+  account: AccountType[];
 }
 
 const dateToyyyymmdd = (date: Date): string => {
@@ -49,33 +51,57 @@ const monthList = (nowDate: Date) => {
 const DateBox = (props: DateBoxProps) => {
   const allDay: Date[] = monthList(props.nowDate);
   const weeks = ["일", "월", "화", "수", "목", "금", "토"];
-  const holidayLocDate = props.holiday.map((data: Holiday) => {
-    return String(data?.locdate);
+  const holiday = props.holiday.map((data: Holiday) => {
+    const holidayLocDate = String(data?.locdate);
+    const holidayName = data?.dateName;
+    return { holidayLocDate, holidayName };
   });
 
   return (
-    <div className={classes["container-date"]}>
-      {weeks.map((week) => {
-        return <WeekBox key={week} weekName={week} />;
-      })}
-      {allDay.map((day: Date) => {
-        const yyyymmdd = dateToyyyymmdd(day);
-        const todayIsHoliday = holidayLocDate.indexOf(yyyymmdd);
-        const isHoliday = todayIsHoliday === -1 ? false : true;
+    <>
+      <div className={classes["container-week"]}>
+        {weeks.map((week) => {
+          return <WeekBox key={week} weekName={week} />;
+        })}
+      </div>
+      <div className={classes["container-date"]}>
+        {allDay.map((day: Date) => {
+          const yyyymmdd = dateToyyyymmdd(day);
+          const todayIsHoliday = holiday
+            .map((v) => v.holidayLocDate)
+            .indexOf(yyyymmdd);
 
-        return (
-          <AllDay
-            key={day.getTime()}
-            day={day}
-            nowDate={props.nowDate}
-            setNowDate={props.setNowDate}
-            clickedDate={props.clickedDate}
-            setClickedDate={props.setClickedDate}
-            isHoliday={isHoliday}
-          />
-        );
-      })}
-    </div>
+          const isHoliday = todayIsHoliday === -1 ? false : true;
+          const todayHolidayName = holiday.map(function (v) {
+            if (v.holidayLocDate === yyyymmdd) {
+              return v.holidayName;
+            }
+            return "";
+          });
+
+          const account = props.account.map(function (v) {
+            if (v.date.replace(/\-/g, "") === String(yyyymmdd)) {
+              return v;
+            }
+            return undefined;
+          });
+
+          return (
+            <AllDay
+              key={day.getTime()}
+              day={day}
+              nowDate={props.nowDate}
+              setNowDate={props.setNowDate}
+              clickedDate={props.clickedDate}
+              setClickedDate={props.setClickedDate}
+              isHoliday={isHoliday}
+              holidayName={todayHolidayName}
+              account={account}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };
 
