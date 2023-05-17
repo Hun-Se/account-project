@@ -7,12 +7,11 @@
 }
 
 .container-btn {
-  border: 0;
+  border: none;
   outline: 0;
-  width: 30px;
   margin: 10px;
 }
 
-.container-btn:hover {
+.container-btnlist button:hover {
   background-color: var(--hover-color);
 }

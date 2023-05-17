@@ -22,13 +22,13 @@ const ControlDate = ({ nowDate, setNowDate }: Props) => {
   return (
     <div className={classes["container-btnlist"]}>
       <div className={classes["container-btn"]}>
-        <button onClick={() => changeYear(-1)}>{`<<연`}</button>
-        <button onClick={() => chagneMonth(-1)}>{`<월`}</button>
+        <button onClick={() => changeYear(-1)}>{`<< 작년`}</button>
       </div>
+      <button onClick={() => chagneMonth(-1)}>{`< 이전월`}</button>
       <h1>{`${nowDate.getFullYear()}.${nowDate.getMonth() + 1}`}</h1>
+      <button onClick={() => chagneMonth(+1)}>{`다음달 >`}</button>
       <div className={classes["container-btn"]}>
-        <button onClick={() => chagneMonth(+1)}>{`월>`}</button>
-        <button onClick={() => changeYear(+1)}>{`연>>`}</button>
+        <button onClick={() => changeYear(+1)}>{`내년 >>`}</button>
       </div>
     </div>
   );
